@@ -25,21 +25,23 @@
                 </ul>
             </div>
         </nav>
-
         <div class="row">
             <div class="col col-12">
-            	<h1>{{title}}</h1>
+                <h1>{{title}}</h1>
             </div>
             <div class="col col-12">
                 <form class="form-inline my-2 my-lg-0" @submit.prevent="submit($event)">
-                  <input class="form-control mr-sm-2"  debounce="500" @input="onInput()" v-model="searchInput" type="search" placeholder="Search" aria-label="Search" required>
-                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    <input class="form-control mr-sm-2" debounce="500" @input="onInput()" v-model="searchInput" type="search" placeholder="Search" aria-label="Search" required>
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form>
             </div>
-            <div class="col col-12">
+            <div class="col col-12" v-if="searchResult.length">
                 <div v-for="item in searchResult">
                     {{item.id}} - {{item.title}}
                 </div>
+            </div>
+            <div class="col col-12" v-if="!searchResult.length">
+                No results
             </div>
         </div>
     </div>
