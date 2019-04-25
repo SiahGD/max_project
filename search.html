@@ -32,7 +32,7 @@
             </div>
             <div class="col col-12">
                 <form class="form-inline my-2 my-lg-0" @submit.prevent="submit($event)">
-                  <input class="form-control mr-sm-2" v-model="searchInput" type="search" placeholder="Search" aria-label="Search" required>
+                  <input class="form-control mr-sm-2"  debounce="500" @input="onInput()" v-model="searchInput" type="search" placeholder="Search" aria-label="Search" required>
                   <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form>
             </div>

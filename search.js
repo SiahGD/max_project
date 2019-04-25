@@ -3,21 +3,33 @@ var app = new Vue({
     data: {
         title: 'Search',
         searchInput: '',
-        searchResult: []
+        searchResult: [],
+        debounce: null
     },
     mounted: function() {
 
     },
     methods: {
+
+        onInput: function() {
+            var vm = this;
+            clearTimeout(this.debounce);
+            this.debounce = setTimeout(() => {
+                vm.search();
+            }, 300)
+        },
         submit: function(event) {
             var vm = this;
+            vm.search();
+        },
 
+        search() {
             axios
                 .get('mock.json')
-                .then(function(response){ return vm.searchInput ? response.data : []})
+                .then(function(response) { return vm.searchInput ? response.data : [] })
                 .then(function(response) {
                     vm.searchResult = response.data;
-                }).catch(err=> {
+                }).catch(err => {
                     vm.searchResult = [];
                 });
         }
