@@ -24,6 +24,7 @@ var app = new Vue({
         },
 
         search() {
+            var vm = this;
             axios
                 .get('mock.json')
                 .then(function(response) { return vm.searchInput ? response.data : [] })
